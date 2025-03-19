@@ -27,6 +27,7 @@ export default function Dashboard() {
     async function fetchUsers() {
       try {
         const response = await api.get('/users')
+
         setUsers(response.data.users)
       } catch (error) {
         console.error('Erro ao buscar usuários:', error)
@@ -42,7 +43,7 @@ export default function Dashboard() {
         Users Manager
       </h1>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto overflow-y-auto">
         <Table className="w-full border border-gray-700">
           <TableHeader className="bg-gray-900">
             <TableRow>
@@ -55,8 +56,9 @@ export default function Dashboard() {
               </TableHead>
             </TableRow>
           </TableHeader>
+
           <TableBody>
-            {users.map((user) => (
+            {users?.map((user) => (
               <TableRow key={user.id} className="border-b border-gray-700">
                 <TableCell className="text-gray-300">{user.id}</TableCell>
                 <TableCell className="text-gray-300">{user.name}</TableCell>

@@ -1,0 +1,3 @@
+{
+  "/(user-manager)/create-user/page": "app/(user-manager)/create-user/page.js"
+}
