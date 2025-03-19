@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///home/lucas-chavarem/Documents/tests/sps-group/test-sps-react/src/app/%28user-manager%29/components/header/index.tsx"],"sourcesContent":["import { FaUsers } from 'react-icons/fa'\n\nexport const Header = () => {\n  return (\n    <header className=\"bg-gray-950 text-white shadow-lg p-8\">\n      <div className=\"flex items-center space-x-3\">\n        <FaUsers className=\"text-gray-300 text-2xl hover:text-gray-500 transition-colors\" />\n        <h1 className=\"text-2xl font-semibold text-white\">Users Manager</h1>\n      </div>\n    </header>\n  )\n}\n"],"names":[],"mappings":";;;;AAAA;;;AAEO,MAAM,SAAS;IACpB,qBACE,8OAAC;QAAO,WAAU;kBAChB,cAAA,8OAAC;YAAI,WAAU;;8BACb,8OAAC,8IAAA,CAAA,UAAO;oBAAC,WAAU;;;;;;8BACnB,8OAAC;oBAAG,WAAU;8BAAoC;;;;;;;;;;;;;;;;;AAI1D","debugId":null}},
-    {"offset": {"line": 53, "column": 0}, "map": {"version":3,"sources":["file:///home/lucas-chavarem/Documents/tests/sps-group/test-sps-react/src/app/%28user-manager%29/layout.tsx"],"sourcesContent":["import { ReactNode } from 'react'\nimport { Header } from './components/header'\n\ninterface UserManagerProps {\n  children: ReactNode\n}\n\nexport default function UserManagerLayout({ children }: UserManagerProps) {\n  return (\n    <>\n      <Header />\n      {children}\n    </>\n  )\n}\n"],"names":[],"mappings":";;;;AACA;;;AAMe,SAAS,kBAAkB,EAAE,QAAQ,EAAoB;IACtE,qBACE;;0BACE,8OAAC,mKAAA,CAAA,SAAM;;;;;YACN;;;AAGP","debugId":null}}]
-}

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Header } from './components/header'
+import NavigationButtons from './components/navigation-buttons'
 
 interface UserManagerProps {
   children: ReactNode
@@ -8,7 +8,7 @@ interface UserManagerProps {
 export default function UserManagerLayout({ children }: UserManagerProps) {
   return (
     <>
-      <Header />
+      <NavigationButtons />
       {children}
     </>
   )

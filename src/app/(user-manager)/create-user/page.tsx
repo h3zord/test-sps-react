@@ -59,7 +59,7 @@ export default function AddUser() {
   }
 
   return (
-    <div className="p-6 max-w-3xl mx-auto mt-10 bg-gray-950 text-white rounded-lg shadow-lg">
+    <div className="p-6 max-w-[22rem] mx-auto mt-5 bg-gray-950 text-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold mb-4 text-center text-gray-100">
         Adicionar Novo Usuário
       </h1>
@@ -129,6 +129,7 @@ export default function AddUser() {
           type="submit"
           disabled={isSubmitting}
           className="w-full cursor-pointer"
+          variant="secondary"
         >
           {isSubmitting ? 'Adicionando...' : 'Adicionar Usuário'}
         </Button>
