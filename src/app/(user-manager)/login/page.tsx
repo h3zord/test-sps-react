@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { api } from '@/lib/axios'
+import { useRouter } from 'next/navigation'
+import { saveToken } from '@/app/utils/storage'
 
 const loginFormSchema = z.object({
   email: z.string().email(),
@@ -17,6 +19,8 @@ const loginFormSchema = z.object({
 type LoginForm = z.infer<typeof loginFormSchema>
 
 export default function Login() {
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -27,14 +31,18 @@ export default function Login() {
 
   async function handleSignIn(data: LoginForm) {
     try {
-      await api.post('/users/authenticate', {
+      const result = await api.post('/users/authenticate', {
         email: data.email,
         password: data.password,
       })
+
+      saveToken(result.data.acessToken)
+
+      router.push('/dashboard')
     } catch (error) {
       console.error(error)
 
-      toast.error('Credenciais inválidas.')
+      toast.error('Credenciais inválidas!')
     }
   }
 
@@ -43,9 +51,7 @@ export default function Login() {
       <div className="p-8  flex justify-center mt-20">
         <div className="flex w-[350px] flex-col justify-center gap-6">
           <div className="flex flex-col gap-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Acessar painel
-            </h1>
+            <h1 className="text-2xl font-semibold">Acessar painel</h1>
             <p className="text-sm text-muted-foreground">
               Bem-vindo ao Users Manager! Entre com sua conta e gerencie seus
               usuários facilmente.

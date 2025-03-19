@@ -1,4 +1,6 @@
 {
+  "/(user-manager)/dashboard/page": "app/(user-manager)/dashboard/page.js",
   "/(user-manager)/login/page": "app/(user-manager)/login/page.js",
+  "/(user-manager)/test/page": "app/(user-manager)/test/page.js",
   "/_not-found/page": "app/_not-found/page.js"
 }
