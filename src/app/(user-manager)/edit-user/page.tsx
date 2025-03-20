@@ -95,8 +95,6 @@ export default function EditUsers() {
   async function handleSaveChanges(data: EditUserFormSchema) {
     if (!selectedUser) return
 
-    console.log(data)
-
     try {
       await api.put(`/users/edit/${selectedUser.id}`, data)
       setOpenDialog(false)
