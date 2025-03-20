@@ -1,5 +1,4 @@
 {
-  "/(auth)/login/page": "app/(auth)/login/page.js",
   "/(user-manager)/create-user/page": "app/(user-manager)/create-user/page.js",
   "/(user-manager)/dashboard/page": "app/(user-manager)/dashboard/page.js",
   "/(user-manager)/edit-user/page": "app/(user-manager)/edit-user/page.js"

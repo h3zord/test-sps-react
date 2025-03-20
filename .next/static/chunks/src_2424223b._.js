@@ -753,7 +753,6 @@ function EditUsers() {
     }
     async function handleSaveChanges(data) {
         if (!selectedUser) return;
-        console.log(data);
         try {
             await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$axios$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["api"].put(`/users/edit/${selectedUser.id}`, data);
             setOpenDialog(false);
@@ -783,7 +782,7 @@ function EditUsers() {
                 children: "Gerenciar Usuários"
             }, void 0, false, {
                 fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                lineNumber: 132,
+                lineNumber: 130,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -800,7 +799,7 @@ function EditUsers() {
                                         children: "Nome"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                        lineNumber: 140,
+                                        lineNumber: 138,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -808,7 +807,7 @@ function EditUsers() {
                                         children: "Email"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                        lineNumber: 141,
+                                        lineNumber: 139,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -816,7 +815,7 @@ function EditUsers() {
                                         children: "Tipo"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                        lineNumber: 142,
+                                        lineNumber: 140,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -824,18 +823,18 @@ function EditUsers() {
                                         children: "Ações"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                        lineNumber: 143,
+                                        lineNumber: 141,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                lineNumber: 139,
+                                lineNumber: 137,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                            lineNumber: 138,
+                            lineNumber: 136,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableBody"], {
@@ -846,21 +845,21 @@ function EditUsers() {
                                             children: user.name
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 150,
+                                            lineNumber: 148,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
                                             children: user.email
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 151,
+                                            lineNumber: 149,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
                                             children: user.type
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 152,
+                                            lineNumber: 150,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -873,7 +872,7 @@ function EditUsers() {
                                                         children: "Editar"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                                        lineNumber: 155,
+                                                        lineNumber: 153,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -882,40 +881,40 @@ function EditUsers() {
                                                         children: "Excluir"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                                        lineNumber: 161,
+                                                        lineNumber: 159,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                                lineNumber: 154,
+                                                lineNumber: 152,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 153,
+                                            lineNumber: 151,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, user.id, true, {
                                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                    lineNumber: 149,
+                                    lineNumber: 147,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                            lineNumber: 147,
+                            lineNumber: 145,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                    lineNumber: 137,
+                    lineNumber: 135,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                lineNumber: 136,
+                lineNumber: 134,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -929,12 +928,12 @@ function EditUsers() {
                                 children: "Editar Usuário"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                lineNumber: 178,
+                                lineNumber: 176,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                            lineNumber: 177,
+                            lineNumber: 175,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -949,20 +948,20 @@ function EditUsers() {
                                             className: "bg-gray-700 text-white"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 185,
+                                            lineNumber: 183,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$error$2d$container$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ErrorContainer"], {
                                             children: errors.name && errors.name.message
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 191,
+                                            lineNumber: 189,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                    lineNumber: 184,
+                                    lineNumber: 182,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -973,20 +972,20 @@ function EditUsers() {
                                             className: "bg-gray-700 text-white"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 197,
+                                            lineNumber: 195,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$error$2d$container$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ErrorContainer"], {
                                             children: errors.email && errors.email.message
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 203,
+                                            lineNumber: 201,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                    lineNumber: 196,
+                                    lineNumber: 194,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -998,20 +997,20 @@ function EditUsers() {
                                             className: "bg-gray-700 text-white"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 209,
+                                            lineNumber: 207,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$error$2d$container$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ErrorContainer"], {
                                             children: errors.password && errors.password.message
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 216,
+                                            lineNumber: 214,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                    lineNumber: 208,
+                                    lineNumber: 206,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1029,12 +1028,12 @@ function EditUsers() {
                                                                 placeholder: "Selecione o tipo"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                                                lineNumber: 231,
+                                                                lineNumber: 229,
                                                                 columnNumber: 23
                                                             }, void 0)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                                            lineNumber: 230,
+                                                            lineNumber: 228,
                                                             columnNumber: 21
                                                         }, void 0),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -1045,7 +1044,7 @@ function EditUsers() {
                                                                     children: "User"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                                                    lineNumber: 235,
+                                                                    lineNumber: 233,
                                                                     columnNumber: 23
                                                                 }, void 0),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -1053,37 +1052,37 @@ function EditUsers() {
                                                                     children: "Admin"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                                                    lineNumber: 236,
+                                                                    lineNumber: 234,
                                                                     columnNumber: 23
                                                                 }, void 0)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                                            lineNumber: 234,
+                                                            lineNumber: 232,
                                                             columnNumber: 21
                                                         }, void 0)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                                    lineNumber: 226,
+                                                    lineNumber: 224,
                                                     columnNumber: 19
                                                 }, void 0)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 222,
+                                            lineNumber: 220,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$error$2d$container$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ErrorContainer"], {
                                             children: errors.type && errors.type.message
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 242,
+                                            lineNumber: 240,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                    lineNumber: 221,
+                                    lineNumber: 219,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1096,7 +1095,7 @@ function EditUsers() {
                                             children: "Cancelar"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 248,
+                                            lineNumber: 246,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1107,36 +1106,36 @@ function EditUsers() {
                                             children: isSubmitting ? 'Salvando...' : 'Salvar'
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                            lineNumber: 256,
+                                            lineNumber: 254,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                                    lineNumber: 247,
+                                    lineNumber: 245,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                            lineNumber: 180,
+                            lineNumber: 178,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                    lineNumber: 176,
+                    lineNumber: 174,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-                lineNumber: 175,
+                lineNumber: 173,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/(user-manager)/edit-user/page.tsx",
-        lineNumber: 131,
+        lineNumber: 129,
         columnNumber: 5
     }, this);
 }
