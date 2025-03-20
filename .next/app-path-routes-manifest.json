@@ -1,7 +1,0 @@
-{
-  "/_not-found/page": "/_not-found",
-  "/(auth)/login/page": "/login",
-  "/(user-manager)/create-user/page": "/create-user",
-  "/(user-manager)/dashboard/page": "/dashboard",
-  "/(user-manager)/edit-user/page": "/edit-user"
-}

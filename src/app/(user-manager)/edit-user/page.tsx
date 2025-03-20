@@ -1,12 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from '@/lib/axios'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { toast } from 'sonner'
 import { z } from 'zod'
+import { ErrorContainer } from '@/app/components/error-container'
 import {
   Table,
   TableBody,
@@ -28,7 +30,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { toast } from 'sonner'
 
 interface User {
   id: string
@@ -58,6 +59,7 @@ export default function EditUsers() {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<EditUserFormSchema>({
     resolver: zodResolver(editUserFormSchema),
@@ -92,6 +94,8 @@ export default function EditUsers() {
 
   async function handleSaveChanges(data: EditUserFormSchema) {
     if (!selectedUser) return
+
+    console.log(data)
 
     try {
       await api.put(`/users/edit/${selectedUser.id}`, data)
@@ -133,7 +137,7 @@ export default function EditUsers() {
         <Table className="w-full border border-gray-700">
           <TableHeader className="bg-gray-800">
             <TableRow>
-              <TableHead className="text-left text-gray-300">Nome</TableHead>
+              <TableHead className="text-left text-gray-300 ">Nome</TableHead>
               <TableHead className="text-left text-gray-300">Email</TableHead>
               <TableHead className="text-left text-gray-300">Tipo</TableHead>
               <TableHead className="text-left text-gray-300">Ações</TableHead>
@@ -175,7 +179,7 @@ export default function EditUsers() {
           </DialogHeader>
           <form
             onSubmit={handleSubmit(handleSaveChanges)}
-            className="space-y-4"
+            className="space-y-2"
           >
             <div>
               <Input
@@ -184,11 +188,9 @@ export default function EditUsers() {
                 className="bg-gray-700 text-white"
               />
 
-              {errors.name && (
-                <span className="text-red-500 text-sm">
-                  {errors.name.message}
-                </span>
-              )}
+              <ErrorContainer>
+                {errors.name && errors.name.message}
+              </ErrorContainer>
             </div>
 
             <div>
@@ -198,11 +200,9 @@ export default function EditUsers() {
                 className="bg-gray-700 text-white"
               />
 
-              {errors.email && (
-                <span className="text-red-500 text-sm">
-                  {errors.email.message}
-                </span>
-              )}
+              <ErrorContainer>
+                {errors.email && errors.email.message}
+              </ErrorContainer>
             </div>
 
             <div>
@@ -213,30 +213,35 @@ export default function EditUsers() {
                 className="bg-gray-700 text-white"
               />
 
-              {errors.password && (
-                <span className="text-red-500 text-sm">
-                  {errors.password.message}
-                </span>
-              )}
+              <ErrorContainer>
+                {errors.password && errors.password.message}
+              </ErrorContainer>
             </div>
 
             <div>
-              <Select {...register('type')} defaultValue="user">
-                <SelectTrigger className="bg-gray-800 text-white border-gray-700">
-                  <SelectValue placeholder="Selecione o tipo" />
-                </SelectTrigger>
+              <Controller
+                name="type"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <SelectTrigger className="bg-gray-800 text-white border-gray-700">
+                      <SelectValue placeholder="Selecione o tipo" />
+                    </SelectTrigger>
 
-                <SelectContent className="bg-gray-800 text-white border-gray-700">
-                  <SelectItem value="user">User</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
-                </SelectContent>
-              </Select>
+                    <SelectContent className="bg-gray-800 text-white border-gray-700">
+                      <SelectItem value="user">User</SelectItem>
+                      <SelectItem value="admin">Admin</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
 
-              {errors.type && (
-                <span className="text-red-500 text-sm">
-                  {errors.type.message}
-                </span>
-              )}
+              <ErrorContainer>
+                {errors.type && errors.type.message}
+              </ErrorContainer>
             </div>
 
             <div className="flex justify-end gap-2">

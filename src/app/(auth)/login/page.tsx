@@ -9,11 +9,11 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { api } from '@/lib/axios'
 import { useRouter } from 'next/navigation'
-import { saveToken } from '@/app/utils/storage'
+import { ErrorContainer } from '@/app/components/error-container'
 
 const loginFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(4),
+  email: z.string().email({ message: 'Digite um email válido!' }),
+  password: z.string().min(4, { message: 'Digite uma senha válida!' }),
 })
 
 type LoginForm = z.infer<typeof loginFormSchema>
@@ -24,19 +24,17 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<LoginForm>({
     resolver: zodResolver(loginFormSchema),
   })
 
   async function handleSignIn(data: LoginForm) {
     try {
-      const result = await api.post('/users/authenticate', {
+      await api.post('/users/authenticate', {
         email: data.email,
         password: data.password,
       })
-
-      saveToken(result.data.acessToken)
 
       router.push('/dashboard')
     } catch (error) {
@@ -58,16 +56,24 @@ export default function Login() {
             </p>
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit(handleSignIn)}>
+          <form className="space-y-2" onSubmit={handleSubmit(handleSignIn)}>
             <div className="space-y-2">
               <Label htmlFor="email">Seu e-mail</Label>
               <Input id="email" type="email" {...register('email')} />
             </div>
 
+            <ErrorContainer>
+              {errors.email && errors.email.message}
+            </ErrorContainer>
+
             <div className="space-y-2">
               <Label htmlFor="password">Sua senha</Label>
               <Input id="password" type="password" {...register('password')} />
             </div>
+
+            <ErrorContainer>
+              {errors.password && errors.password.message}
+            </ErrorContainer>
 
             <Button
               disabled={isSubmitting}

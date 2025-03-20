@@ -1,6 +1,6 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { api } from '@/lib/axios'
 import { useRouter } from 'next/navigation'
+import { ErrorContainer } from '@/app/components/error-container'
 import {
   Select,
   SelectContent,
@@ -34,6 +35,7 @@ export default function AddUser() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<CreateUserFormSchema>({
     resolver: zodResolver(createUserFormSchema),
@@ -64,7 +66,7 @@ export default function AddUser() {
         Adicionar Novo Usuário
       </h1>
 
-      <form className="space-y-4" onSubmit={handleSubmit(handleCreateUser)}>
+      <form className="space-y-2" onSubmit={handleSubmit(handleCreateUser)}>
         <div className="space-y-2">
           <Label htmlFor="name">Nome</Label>
           <Input
@@ -74,9 +76,7 @@ export default function AddUser() {
             {...register('name')}
           />
 
-          {errors.name && (
-            <p className="text-red-500 text-sm">{errors.name.message}</p>
-          )}
+          <ErrorContainer>{errors.name && errors.name.message}</ErrorContainer>
         </div>
 
         <div className="space-y-2">
@@ -88,27 +88,31 @@ export default function AddUser() {
             {...register('email')}
           />
 
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
-          )}
+          <ErrorContainer>
+            {errors.email && errors.email.message}
+          </ErrorContainer>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="type">Tipo</Label>
-          <Select {...register('type')} defaultValue="user">
-            <SelectTrigger className="bg-gray-800 text-white border-gray-700">
-              <SelectValue placeholder="Selecione o tipo" />
-            </SelectTrigger>
+          <Controller
+            name="type"
+            control={control}
+            render={({ field }) => (
+              <Select onValueChange={field.onChange} defaultValue="user">
+                <SelectTrigger className="bg-gray-800 text-white border-gray-700">
+                  <SelectValue placeholder="Selecione o tipo" />
+                </SelectTrigger>
 
-            <SelectContent className="bg-gray-800 text-white border-gray-700">
-              <SelectItem value="user">User</SelectItem>
-              <SelectItem value="admin">Admin</SelectItem>
-            </SelectContent>
-          </Select>
+                <SelectContent className="bg-gray-800 text-white border-gray-700">
+                  <SelectItem value="user">User</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
 
-          {errors.type && (
-            <p className="text-red-500 text-sm">{errors.type.message}</p>
-          )}
+          <ErrorContainer>{errors.type && errors.type.message}</ErrorContainer>
         </div>
 
         <div className="space-y-2">
@@ -120,9 +124,9 @@ export default function AddUser() {
             {...register('password')}
           />
 
-          {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password.message}</p>
-          )}
+          <ErrorContainer>
+            {errors.password && errors.password.message}
+          </ErrorContainer>
         </div>
 
         <Button

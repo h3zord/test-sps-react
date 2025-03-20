@@ -1,4 +1,3 @@
-import { getToken } from '@/app/utils/storage'
 import axios from 'axios'
 
 export const api = axios.create({
@@ -6,12 +5,12 @@ export const api = axios.create({
   withCredentials: true,
 })
 
-api.interceptors.request.use((config) => {
-  const token = getToken()
+// api.interceptors.request.use((config) => {
+//   const token = getToken()
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`
-  }
+//   if (token) {
+//     config.headers.Authorization = `Bearer ${token}`
+//   }
 
-  return config
-})
+//   return config
+// })
