@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label'
 import { api } from '@/lib/axios'
 import { useRouter } from 'next/navigation'
 import { ErrorContainer } from '@/app/components/error-container'
+import { isAxiosError } from 'axios'
 import {
   Select,
   SelectContent,
@@ -17,7 +18,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { isAxiosError } from 'axios'
 
 const createUserFormSchema = z.object({
   name: z.string().min(3, { message: 'Digite um nome válido!' }),

@@ -1,14 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from '@/lib/axios'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import EditUserDialog from './edit-user-dialog'
 import { toast } from 'sonner'
-import { z } from 'zod'
-import { ErrorContainer } from '@/app/components/error-container'
 import {
   Table,
   TableBody,
@@ -17,19 +13,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 
 interface User {
   id: string
@@ -45,27 +28,6 @@ export default function EditUsers() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
   const [openDialog, setOpenDialog] = useState(false)
 
-  const editUserFormSchema = z.object({
-    name: z.string().min(3, { message: 'Digite um nome válido!' }),
-    email: z.string().email({ message: 'Digite um e-mail válido!' }),
-    type: z.enum(['user', 'admin']).default('user'),
-    password: z
-      .string()
-      .min(4, { message: 'A senha deve ter pelo menos 4 caracteres!' }),
-  })
-
-  type EditUserFormSchema = z.infer<typeof editUserFormSchema>
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    control,
-    formState: { errors, isSubmitting },
-  } = useForm<EditUserFormSchema>({
-    resolver: zodResolver(editUserFormSchema),
-  })
-
   useEffect(() => {
     fetchUsers()
   }, [])
@@ -73,7 +35,6 @@ export default function EditUsers() {
   async function fetchUsers() {
     try {
       const response = await api.get('/users')
-
       setUsers(response.data.users)
     } catch (error) {
       console.error(error)
@@ -82,30 +43,7 @@ export default function EditUsers() {
 
   function handleEditUser(user: User) {
     setSelectedUser(user)
-
-    reset({
-      name: user.name,
-      email: user.email,
-      password: '',
-      type: user.type,
-    })
-
     setOpenDialog(true)
-  }
-
-  async function handleSaveChanges(data: EditUserFormSchema) {
-    if (!selectedUser) return
-
-    try {
-      await api.put(`/users/edit/${selectedUser.id}`, data)
-      setOpenDialog(false)
-
-      toast.success('Usuário editado com sucesso!')
-
-      fetchUsers()
-    } catch (error) {
-      console.error(error)
-    }
   }
 
   async function handleDeleteUser(userId: string) {
@@ -136,7 +74,7 @@ export default function EditUsers() {
         <Table className="w-full border border-gray-50">
           <TableHeader className="bg-gray-800">
             <TableRow>
-              <TableHead className="text-left text-gray-300 ">Nome</TableHead>
+              <TableHead className="text-left text-gray-300">Nome</TableHead>
               <TableHead className="text-left text-gray-300">E-mail</TableHead>
               <TableHead className="text-left text-gray-300">Tipo</TableHead>
               <TableHead className="text-left text-gray-300">
@@ -155,6 +93,7 @@ export default function EditUsers() {
                 <TableCell className="text-gray-100">
                   {new Date(user.createdAt).toLocaleDateString('pt-BR')}
                 </TableCell>
+
                 <TableCell>
                   <div className="flex gap-2">
                     <Button
@@ -164,6 +103,7 @@ export default function EditUsers() {
                     >
                       Editar
                     </Button>
+
                     <Button
                       className="cursor-pointer"
                       variant="destructive"
@@ -179,100 +119,12 @@ export default function EditUsers() {
         </Table>
       </div>
 
-      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent className="bg-gray-800 text-white">
-          <DialogHeader>
-            <DialogTitle>Editar Usuário</DialogTitle>
-          </DialogHeader>
-
-          <form
-            onSubmit={handleSubmit(handleSaveChanges)}
-            className="space-y-2"
-          >
-            <div>
-              <Input
-                placeholder="Nome"
-                {...register('name')}
-                className="bg-gray-700 text-white"
-              />
-
-              <ErrorContainer>
-                {errors.name && errors.name.message}
-              </ErrorContainer>
-            </div>
-
-            <div>
-              <Input
-                placeholder="Email"
-                {...register('email')}
-                className="bg-gray-700 text-white"
-              />
-
-              <ErrorContainer>
-                {errors.email && errors.email.message}
-              </ErrorContainer>
-            </div>
-
-            <div>
-              <Input
-                type="password"
-                placeholder="Senha"
-                {...register('password')}
-                className="bg-gray-700 text-white"
-              />
-
-              <ErrorContainer>
-                {errors.password && errors.password.message}
-              </ErrorContainer>
-            </div>
-
-            <div>
-              <Controller
-                name="type"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger className="bg-gray-800 text-white border-gray-700">
-                      <SelectValue placeholder="Selecione o tipo" />
-                    </SelectTrigger>
-
-                    <SelectContent className="bg-gray-800 text-white border-gray-700">
-                      <SelectItem value="user">User</SelectItem>
-                      <SelectItem value="admin">Admin</SelectItem>
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-
-              <ErrorContainer>
-                {errors.type && errors.type.message}
-              </ErrorContainer>
-            </div>
-
-            <div className="flex justify-end gap-2">
-              <Button
-                className="cursor-pointer"
-                type="button"
-                onClick={() => setOpenDialog(false)}
-              >
-                Cancelar
-              </Button>
-
-              <Button
-                className="cursor-pointer"
-                type="submit"
-                disabled={isSubmitting}
-                variant="secondary"
-              >
-                {isSubmitting ? 'Salvando...' : 'Salvar'}
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
+      <EditUserDialog
+        open={openDialog}
+        setOpen={setOpenDialog}
+        user={selectedUser}
+        fetchUsers={fetchUsers}
+      />
     </div>
   )
 }
