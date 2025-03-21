@@ -17,14 +17,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { isAxiosError } from 'axios'
 
 const createUserFormSchema = z.object({
-  name: z.string().min(3, { message: 'Nome é obrigatório' }),
-  email: z.string().email({ message: 'Email inválido' }),
+  name: z.string().min(3, { message: 'Digite um nome válido!' }),
+  email: z.string().email({ message: 'Digite um e-mail válido!' }),
   type: z.enum(['user', 'admin']).default('user'),
   password: z
     .string()
-    .min(4, { message: 'Senha deve ter pelo menos 4 caracteres' }),
+    .min(4, { message: 'A senha deve ter pelo menos 4 caracteres!' }),
 })
 
 type CreateUserFormSchema = z.infer<typeof createUserFormSchema>
@@ -54,6 +55,19 @@ export default function AddUser() {
 
       router.push('/dashboard')
     } catch (error) {
+      if (isAxiosError(error)) {
+        const code = error.response?.data.error
+
+        const emailAlreadyRegistered =
+          code.includes('User') && code.includes('already exists')
+
+        if (emailAlreadyRegistered) {
+          console.error(error)
+
+          return toast.error('E-mail já cadastrado no banco de dados!')
+        }
+      }
+
       toast.error('Erro ao adicionar usuário!')
 
       console.error(error)
@@ -61,7 +75,7 @@ export default function AddUser() {
   }
 
   return (
-    <div className="p-6 max-w-[22rem] mx-auto mt-5 bg-gray-950 text-white rounded-lg shadow-lg">
+    <div className="p-6 max-w-[22rem] mx-auto mt-2 bg-gray-950 text-white rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold mb-4 text-center text-gray-100">
         Adicionar Novo Usuário
       </h1>
@@ -69,27 +83,26 @@ export default function AddUser() {
       <form className="space-y-2" onSubmit={handleSubmit(handleCreateUser)}>
         <div className="space-y-2">
           <Label htmlFor="name">Nome</Label>
-          <Input
-            id="name"
-            type="text"
-            className="w-full sm:w-[280px]"
-            {...register('name')}
-          />
+          <Input id="name" type="text" {...register('name')} />
 
           <ErrorContainer>{errors.name && errors.name.message}</ErrorContainer>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            className="w-full sm:w-[280px]"
-            {...register('email')}
-          />
+          <Input id="email" type="email" {...register('email')} />
 
           <ErrorContainer>
             {errors.email && errors.email.message}
+          </ErrorContainer>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="password">Senha</Label>
+          <Input id="password" type="password" {...register('password')} />
+
+          <ErrorContainer>
+            {errors.password && errors.password.message}
           </ErrorContainer>
         </div>
 
@@ -113,20 +126,6 @@ export default function AddUser() {
           />
 
           <ErrorContainer>{errors.type && errors.type.message}</ErrorContainer>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="password">Senha</Label>
-          <Input
-            id="password"
-            type="password"
-            className="w-full sm:w-[280px]"
-            {...register('password')}
-          />
-
-          <ErrorContainer>
-            {errors.password && errors.password.message}
-          </ErrorContainer>
         </div>
 
         <Button

@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation'
 import { ErrorContainer } from '@/app/components/error-container'
 
 const loginFormSchema = z.object({
-  email: z.string().email({ message: 'Digite um email válido!' }),
+  email: z.string().email({ message: 'Digite um e-mail válido!' }),
   password: z.string().min(4, { message: 'Digite uma senha válida!' }),
 })
 
@@ -46,8 +46,8 @@ export default function Login() {
 
   return (
     <>
-      <div className="p-8  flex justify-center mt-20">
-        <div className="flex w-[350px] flex-col justify-center gap-6">
+      <div className="p-8 max-w-[25rem] mt-20 mx-auto">
+        <div className="flex  flex-col justify-center gap-6">
           <div className="flex flex-col gap-2 text-center">
             <h1 className="text-2xl font-semibold">Acessar painel</h1>
             <p className="text-sm text-muted-foreground">
@@ -56,24 +56,24 @@ export default function Login() {
             </p>
           </div>
 
-          <form className="space-y-2" onSubmit={handleSubmit(handleSignIn)}>
+          <form className="space-y-4" onSubmit={handleSubmit(handleSignIn)}>
             <div className="space-y-2">
               <Label htmlFor="email">Seu e-mail</Label>
               <Input id="email" type="email" {...register('email')} />
-            </div>
 
-            <ErrorContainer>
-              {errors.email && errors.email.message}
-            </ErrorContainer>
+              <ErrorContainer>
+                {errors.email && errors.email.message}
+              </ErrorContainer>
+            </div>
 
             <div className="space-y-2">
               <Label htmlFor="password">Sua senha</Label>
               <Input id="password" type="password" {...register('password')} />
-            </div>
 
-            <ErrorContainer>
-              {errors.password && errors.password.message}
-            </ErrorContainer>
+              <ErrorContainer>
+                {errors.password && errors.password.message}
+              </ErrorContainer>
+            </div>
 
             <Button
               disabled={isSubmitting}

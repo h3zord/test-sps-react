@@ -35,8 +35,9 @@ interface User {
   id: string
   name: string
   email: string
-  password: string
   type: 'admin' | 'user'
+  createdAt: string
+  updatedAt: string
 }
 
 export default function EditUsers() {
@@ -45,12 +46,12 @@ export default function EditUsers() {
   const [openDialog, setOpenDialog] = useState(false)
 
   const editUserFormSchema = z.object({
-    name: z.string().min(3, { message: 'Nome é obrigatório' }),
-    email: z.string().email({ message: 'Email inválido' }),
+    name: z.string().min(3, { message: 'Digite um nome válido!' }),
+    email: z.string().email({ message: 'Digite um e-mail válido!' }),
     type: z.enum(['user', 'admin']).default('user'),
     password: z
       .string()
-      .min(4, { message: 'Senha deve ter pelo menos 4 caracteres' }),
+      .min(4, { message: 'A senha deve ter pelo menos 4 caracteres!' }),
   })
 
   type EditUserFormSchema = z.infer<typeof editUserFormSchema>
@@ -75,7 +76,7 @@ export default function EditUsers() {
 
       setUsers(response.data.users)
     } catch (error) {
-      console.error('Erro ao buscar usuários:', error)
+      console.error(error)
     }
   }
 
@@ -103,7 +104,7 @@ export default function EditUsers() {
 
       fetchUsers()
     } catch (error) {
-      console.error('Erro ao atualizar usuário:', error)
+      console.error(error)
     }
   }
 
@@ -120,43 +121,51 @@ export default function EditUsers() {
 
         fetchUsers()
       } catch (error) {
-        console.error('Erro ao excluir usuário:', error)
+        console.error(error)
       }
     }
   }
 
   return (
     <div className="p-6 max-w-5xl mt-10 mx-auto bg-gray-950 text-white rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-4 text-center">
+      <h1 className="text-2xl font-bold mb-4 text-center text-gray-100">
         Gerenciar Usuários
       </h1>
 
       <div className="overflow-x-auto">
-        <Table className="w-full border border-gray-700">
+        <Table className="w-full border border-gray-50">
           <TableHeader className="bg-gray-800">
             <TableRow>
               <TableHead className="text-left text-gray-300 ">Nome</TableHead>
-              <TableHead className="text-left text-gray-300">Email</TableHead>
+              <TableHead className="text-left text-gray-300">E-mail</TableHead>
               <TableHead className="text-left text-gray-300">Tipo</TableHead>
+              <TableHead className="text-left text-gray-300">
+                Criado em
+              </TableHead>
               <TableHead className="text-left text-gray-300">Ações</TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
-            {users.map((user) => (
+            {users?.map((user) => (
               <TableRow key={user.id} className="border-b border-gray-700">
-                <TableCell>{user.name}</TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell>{user.type}</TableCell>
+                <TableCell className="text-gray-100">{user.name}</TableCell>
+                <TableCell className="text-gray-100">{user.email}</TableCell>
+                <TableCell className="text-gray-100">{user.type}</TableCell>
+                <TableCell className="text-gray-100">
+                  {new Date(user.createdAt).toLocaleDateString('pt-BR')}
+                </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
                     <Button
+                      className="cursor-pointer"
                       variant="secondary"
                       onClick={() => handleEditUser(user)}
                     >
                       Editar
                     </Button>
                     <Button
+                      className="cursor-pointer"
                       variant="destructive"
                       onClick={() => handleDeleteUser(user.id)}
                     >
@@ -175,6 +184,7 @@ export default function EditUsers() {
           <DialogHeader>
             <DialogTitle>Editar Usuário</DialogTitle>
           </DialogHeader>
+
           <form
             onSubmit={handleSubmit(handleSaveChanges)}
             className="space-y-2"

@@ -6,7 +6,7 @@ interface ErrorContainerProps {
 
 export function ErrorContainer({ children }: ErrorContainerProps) {
   return (
-    <div className="m-1 flex h-6 items-center justify-items-start text-xs text-red-600">
+    <div className="flex m-1 h-6 items-center text-xs text-red-600">
       {children}
     </div>
   )

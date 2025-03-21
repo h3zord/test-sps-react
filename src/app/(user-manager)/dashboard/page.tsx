@@ -15,7 +15,7 @@ interface User {
   id: string
   name: string
   email: string
-  type: string
+  type: 'admin' | 'user'
   createdAt: string
   updatedAt: string
 }
@@ -30,7 +30,7 @@ export default function Dashboard() {
 
         setUsers(response.data.users)
       } catch (error) {
-        console.error('Erro ao buscar usuários:', error)
+        console.error(error)
       }
     }
 
@@ -44,15 +44,15 @@ export default function Dashboard() {
       </h1>
 
       <div className="overflow-x-auto overflow-y-auto">
-        <Table className="w-full border border-gray-700">
-          <TableHeader className="bg-gray-900">
+        <Table className="w-full border border-gray-50">
+          <TableHeader className="bg-gray-800">
             <TableRow>
-              <TableHead className="text-left text-gray-400">ID</TableHead>
-              <TableHead className="text-left text-gray-400">Nome</TableHead>
-              <TableHead className="text-left text-gray-400">Email</TableHead>
-              <TableHead className="text-left text-gray-400">Tipo</TableHead>
-              <TableHead className="text-left text-gray-400">
-                Criado Em
+              <TableHead className="text-left text-gray-300">ID</TableHead>
+              <TableHead className="text-left text-gray-300">Nome</TableHead>
+              <TableHead className="text-left text-gray-300">E-mail</TableHead>
+              <TableHead className="text-left text-gray-300">Tipo</TableHead>
+              <TableHead className="text-left text-gray-300">
+                Criado em
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -60,11 +60,11 @@ export default function Dashboard() {
           <TableBody>
             {users?.map((user) => (
               <TableRow key={user.id} className="border-b border-gray-700">
-                <TableCell className="text-gray-300">{user.id}</TableCell>
-                <TableCell className="text-gray-300">{user.name}</TableCell>
-                <TableCell className="text-gray-300">{user.email}</TableCell>
-                <TableCell className="text-gray-300">{user.type}</TableCell>
-                <TableCell className="text-gray-300">
+                <TableCell className="text-gray-100">{user.id}</TableCell>
+                <TableCell className="text-gray-100">{user.name}</TableCell>
+                <TableCell className="text-gray-100">{user.email}</TableCell>
+                <TableCell className="text-gray-100">{user.type}</TableCell>
+                <TableCell className="text-gray-100">
                   {new Date(user.createdAt).toLocaleDateString('pt-BR')}
                 </TableCell>
               </TableRow>
