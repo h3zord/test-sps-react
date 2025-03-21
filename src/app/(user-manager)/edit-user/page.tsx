@@ -23,7 +23,7 @@ interface User {
   updatedAt: string
 }
 
-export default function EditUsers() {
+export default function EditUser() {
   const [users, setUsers] = useState<User[]>([])
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
   const [openDialog, setOpenDialog] = useState(false)

@@ -30,7 +30,7 @@ const createUserFormSchema = z.object({
 
 type CreateUserFormSchema = z.infer<typeof createUserFormSchema>
 
-export default function AddUser() {
+export default function CreateUser() {
   const router = useRouter()
 
   const {
